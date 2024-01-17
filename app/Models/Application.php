@@ -13,7 +13,11 @@ class Application extends Model
         'number',
         'decription',
         'id_user',
+        'id_status',
     ];
 
-    public $timestamps = false;
+    public function status()
+    {
+        return $this->belongsToMany(Status::class);
+    }
 }

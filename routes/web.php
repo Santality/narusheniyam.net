@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,10 @@ Route::post('/signin', [UserController::class, 'signin']);
 
 Route::get('/logout', [UserController::class, 'logout']);
 
-Route::get('/applications', function () {
-    return view('applications');
+Route::get('/applications', [ApplicationController::class,'AppList']);
+
+Route::get('/application/create', function () {
+    return view('applicationcreate');
 });
+
+Route::post('/application/appcreate', [ApplicationController::class, 'AppCreate']);

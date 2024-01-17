@@ -11,8 +11,35 @@
 <body>
     <x-header></x-header>
     <div class="container">
-        <a class="text-decoration-none" href="">Подать заявление</a>
+        <a class="mt-3 btn btn-primary" class="text-decoration-none" href="/application/create">Подать заявление</a>
         <h2>Заявления:</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">№</th>
+                <th scope="col">Гос. номер</th>
+                <th scope="col">Нарушение</th>
+                <th scope="col">Статус</th>
+              </tr>
+            </thead>
+            <tbody>
+                @forelse ($apps as $app)
+                <tr>
+                    <td>{{$app->id}}</td>
+                    <td>{{$app->number}}</td>
+                    <td>{{$app->decription}}</td>
+                    <td>{{$app->title_status}}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td>В данный момент у вас нет заявлений</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                @endforelse
+            </tbody>
+          </table>
     </div>
 </body>
 </html>
