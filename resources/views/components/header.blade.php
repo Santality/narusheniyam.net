@@ -7,9 +7,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           @auth
+          @if (Auth::user()->id_role == 2)
           <li class="nav-item">
             <a class="nav-link" href="/applications">Заявления</a>
           </li>
+          @endif
           <li class="nav-item">
             <a class="nav-link" href="/logout">Выход</a>
           </li>

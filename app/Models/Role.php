@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Status extends Model
+class Role extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title_status',
+        'title_role',
     ];
 
     public $timestamps = false;
-
-    public function applications()
-    {
-        return $this->hasMany(Application::class, 'id_status');
-    }
 }

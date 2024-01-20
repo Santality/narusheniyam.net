@@ -20,8 +20,7 @@ class ApplicationController extends Controller
     }
 
     public function AppList(){
-        $data = Application::where('id_user', Auth::user()->id)->get();
-        dd($data);
+        $data = Application::where('id_user', Auth::user()->id)->with('status')->get();
         return view("/applications", ["apps"=> $data]);
     }
 }

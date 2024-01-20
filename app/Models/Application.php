@@ -18,6 +18,6 @@ class Application extends Model
 
     public function status()
     {
-        return $this->belongsToMany(Status::class);
+        return $this->belongsTo(Status::class, 'id_status');
     }
 }

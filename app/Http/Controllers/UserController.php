@@ -33,6 +33,7 @@ class UserController extends Controller
             "parentname"=> $user["parentname"],
             "phone"=> $user["phone"],
             "email"=> $user["email"],
+            "id_role"=> 2,
         ]);
         Auth::login($user);
         return redirect("/applications");
@@ -45,7 +46,11 @@ class UserController extends Controller
             "login"=> $user["login"],
             "password"=> $user["password"],
         ])){
-            return redirect("/applications");
+            if(Auth::user()->id_role == 1){
+                return redirect("/admin");
+            }else{
+                return redirect("/applications");
+            }
         }else{
             return redirect("/auth");
         }

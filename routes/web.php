@@ -36,3 +36,7 @@ Route::get('/application/create', function () {
 });
 
 Route::post('/application/appcreate', [ApplicationController::class, 'AppCreate']);
+
+Route::get('/admin', function () {
+    return view('admin.index');
+});
