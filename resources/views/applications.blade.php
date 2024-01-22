@@ -11,12 +11,22 @@
 <body>
     <x-header></x-header>
     <div class="container">
-        <a class="mt-3 btn btn-primary" class="text-decoration-none" href="/application/create">Подать заявление</a>
+        <a class="mt-3 btn btn-primary text-decoration-none" href="/application/create">Подать заявление</a>
         <h2>Заявления:</h2>
+        <form action="/applications/sort" method="get">
+            @csrf
+            <label for="sort_by">Сортировать по:</label>
+            <select name="sort_by" id="sort_by">
+                <option value="1">Дата создания (Новые)</option>
+                <option value="2">Дата создания (Старые)</option>
+                <option value="3">Статус</option>
+            </select>
+            <div class="mt-2"><button class="btn btn-primary" type="submit">Применить сортировку</button></div>
+        </form>
+        <div class="table-responsive">
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">№</th>
                 <th scope="col">Гос. номер</th>
                 <th scope="col">Нарушение</th>
                 <th scope="col">Статус</th>
@@ -25,7 +35,6 @@
             <tbody>
                 @forelse ($apps as $app)
                 <tr>
-                    <td>{{$app->id}}</td>
                     <td>{{$app->number}}</td>
                     <td>{{$app->decription}}</td>
                     <td>{{$app->status->title_status}}</td>
@@ -35,11 +44,12 @@
                     <td>В данный момент у вас нет заявлений</td>
                     <td></td>
                     <td></td>
-                    <td></td>
                 </tr>
                 @endforelse
             </tbody>
           </table>
+          </div>
+          {{ $apps->withQueryString()->links('pagination::bootstrap-5') }}
     </div>
 </body>
 </html>

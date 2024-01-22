@@ -28,6 +28,11 @@ class User extends Authenticatable
         'id_role',
     ];
 
+    public function applications()
+    {
+        return $this->hasMany(Application::class, 'id_user');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

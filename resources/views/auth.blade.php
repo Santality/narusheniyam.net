@@ -11,18 +11,42 @@
 <body>
     <x-header></x-header>
     <div class="container">
-        <h2>Авторизация</h2>
+        <h2 class="mt-5">Авторизация</h2>
         <form action="/signin" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="login" class="form-label">Логин</label>
                 <input type="text" class="form-control" id="login" name="login">
+                @error('login')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Пароль</label>
-              <input type="password" class="form-control" id="password" name="password">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" name="password">
+                @error('password')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary">Войти</button>
+            @if (session('denied'))
+                <div class="alert alert-danger alert-dismissible mt-2">
+                    <div class="alert-text">
+                        {{ session('denied') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                </div>
+            @endif
             <div class="mt-2"><a class="text-decoration-none" href="/">Зарегистрироваться</a></div>
         </form>
     </div>

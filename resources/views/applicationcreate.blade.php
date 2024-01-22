@@ -11,20 +11,36 @@
 <body>
     <x-header></x-header>
     <div class="container">
-        <a href="/applications">Назад</a>
-        <h2>Подача заявления</h2>
+        <h2 class="mt-3">Подача заявления</h2>
         <form action="/application/appcreate" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="number" class="form-label">Гос. регистрационный номер автомобиля</label>
                 <input type="text" class="form-control" id="number" name="number">
+                @error('number')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
               <label for="description" class="form-label">Описание нарушения</label>
               <input type="text" class="form-control" id="description" name="description">
+              @error('description')
+                    <div class="alert alert-danger alert-dismissible">
+                        <div class="alert-text">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary">Подать заявление</button>
         </form>
+        <div class="mt-2"><a class="text-decoration-none" href="/applications">Назад</a></div>
     </div>
 </body>
 </html>

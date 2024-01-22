@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,18 @@ Route::get('/application/create', function () {
 
 Route::post('/application/appcreate', [ApplicationController::class, 'AppCreate']);
 
-Route::get('/admin', function () {
-    return view('admin.index');
+Route::get('/admin', [AdminController::class, 'index']);
+
+Route::get('/admin/sort', [AdminController::class, 'sort']);
+
+Route::get('/admin/confirm/{id}', [AdminController::class, 'confirm']);
+
+Route::get('/admin/decline/{id}', [AdminController::class, 'decline']);
+
+Route::get('/applications/sort', [ApplicationController::class,'AppSort']);
+
+Route::get('/profile', function () {
+    return view('profile');
 });
+
+Route::post('/update', [UserController::class, 'update']);
