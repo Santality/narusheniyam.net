@@ -76,7 +76,7 @@
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Телефон</label>
-                <input type="text" class="form-control" id="phone" name="phone">
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="+7(XXX)-XXX-XX-XX">
                 @error('phone')
                     <div class="alert alert-danger alert-dismissible">
                         <div class="alert-text">
